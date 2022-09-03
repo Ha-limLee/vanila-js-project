@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="id">ID: </label>
+            <input id="id" type="text">
+        </div>
+        <div>
+            <label for="pw">PW: </label>
+            <input id="pw" type="password">
+        </div>
+        <input type="button" value="로그인" onclick="login()">
+        <input type="button" value="취소" onclick="cancel()">
+    </form>
+
+    <script>
+        $ = document.querySelector.bind(document);
+        function login() {
+            console.log("Hello")
+            const id = $("#id").value;
+            const pw = $("#pw").value;
+            if (id === "" || pw === "") {
+                alert("아이디, 비밀번호를 입력해주세요.");
+                return;
+            }
+
+            if (id !== "ssafy" || pw !== "1234") {
+                alert("아이디 또는 비밀번호가 틀렸습니다.");
+                return;
+            } else {
+                alert("로그인 성공!");
+            }
+
+            const user = {
+                id: id,
+                pw: pw
+            };
+
+            localStorage.setItem("user", JSON.stringify(user));
+            location.href = "./index.html";
+        }
+        function cancel() {
+            localStorage.removeItem("user");
+            location.href = "./index.html";
+        }
+    </script>
+</body>
+</html>

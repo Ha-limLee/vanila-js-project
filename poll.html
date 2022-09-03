@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투표 생성</title>
+</head>
+<body>
+    <main style="margin: 100px auto; width: 350px;">
+        <h2>투표 만들기</h2>
+        <form>
+            <label for="begin">시작일</label>
+            <input id="begin" type="date">
+            <label for="end">종료일</label>
+            <input id="end" type="date">
+            
+            <div>
+                <label for="question">질문 내용</label>
+                <input id="question" type="text">
+            </div>
+            <div>
+                <label>답변 항목</label>
+                <input type="button" value="추가" onclick="append(this)">
+            </div>
+        </form>
+        <div id="board">
+        </div>
+        <input type="button" value="투표생성" onclick="createPoll()">
+    </main>
+    <script>
+        function append(element) {
+            const child = document.createElement("div");
+            child.innerHTML = `
+                <input class="answer" type="text">
+                <input type="button" value="삭제" onclick="remove(this)">
+            `;
+            const board = document.querySelector("#board");
+            board.appendChild(child);
+        }
+        function remove(element) {
+            const label = element.parentNode;
+            const board = label.parentNode;
+            board.removeChild(label);
+        }
+        function createPoll() {
+            const beginDate = document.querySelector("#begin").value;
+            const endDate = document.querySelector("#end").value;
+            const question = document.querySelector("#question").value;
+            const answers = document.querySelectorAll(".answer");
+
+            console.log(answers.length);
+            answers.forEach((val, i) => {
+                console.log(val.value);
+            })
+
+            if (question === "") {
+                alert("질문을 입력해주세요.");
+                return;
+            } else if (beginDate === "" || endDate === "") {
+                alert("시작일 및 종료일을 입력해주세요.");
+                return;
+            } else if (answers.length === 0) {
+                alert("답변 항목을 추가해주세요.");
+                return;
+            } else if (any((elm) => elm.value === "", answers)) {
+                alert("답변 항목을 채워주세요.");
+                return;
+            }
+            const arr = [];
+            answers.forEach((el, key) => {
+                arr.push(el.value);
+            });
+
+            const poll = {
+                beginDate: beginDate,
+                endDate: endDate,
+                question: question,
+                answers: arr
+            };
+
+            localStorage.setItem("poll", JSON.stringify(poll));
+            alert("투표가 생성되었습니다.");
+            location.href = "./index.html";
+        }
+
+        function any(fn, arr) {
+            for (let i = 0; i < arr.length; i++) {
+                if (fn(arr[i]))
+                    return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
