@@ -22,6 +22,4 @@ export class CafeHeader extends HTMLElement {
             </header>
         `;
     }
-    connectedCallback() {
-    }
 }
