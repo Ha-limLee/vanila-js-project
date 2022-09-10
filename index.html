@@ -7,147 +7,15 @@
   <link rel="stylesheet" href="./style.css">
   <title>SSAFY BOOK CAFE</title>
 
-  <script src="./src/components/CafeHeader/index.js" type="module"></script>
+  <script src="./src/components/CafeHeader.js" type="module"></script>
+  <script src="./src/components/CafeAside.js" type="module"></script>
+  <script src="./src/components/CafeMain.js" type="module"></script>
 </head>
 <body>
   <cafe-header></cafe-header>
   <div id="middle">
-    <aside>
-      <img id="noimg" src="./img/noimg.png">
-      <img id="profile" src="./img/profile.png" style="display: none">
-      <div id="aside-title">
-        <div id="aside-title-text">
-          전국매장펼치기
-        </div>
-      </div>
-      <ul>
-        <div id="collapse-seoul" onclick="collapse(this)">
-          서울
-        </div>
-        <li style="display:none"><a href="#">역삼점</a></li>
-        <li style="display:none"><a href="#">선릉점</a></li>
-      </ul>
-      <ul>
-        <div id="collapse-daejeon" onclick="collapse(this)">
-          대전
-        </div>
-        <li style="display:none"><a href="#">학하점</a></li>
-        <li style="display:none"><a href="#">봉명점</a></li>
-      </ul>
-      <ul>
-        <div id="collapse-gumi" onclick="collapse(this)">
-          구미
-        </div>
-        <li style="display:none"><a href="#">인동점</a></li>
-        <li style="display:none"><a href="#">공단점</a></li>
-      </ul>
-      <ul>
-        <div id="collapse-gwangju" onclick="collapse(this)">
-          광주
-        </div>
-        <li style="display:none"><a href="#">하남산단점</a></li>
-        <li style="display:none"><a href="#">광주역점</a></li>
-      </ul>
-      <div id="aside-poll">
-        <div id="aside-poll-header">
-          [ 당신의 선택 ]
-        </div>
-        <div>
-          공부하고 싶은 분야를 골라 주세요!!!
-        </div>
-        <form>
-          <div>
-            <input type="radio" name="subject" id="subject-1">
-            <label for="subject-1"><img src="./img/poll/python.png" alt="python">Python</label>
-          </div>
-          <div>
-            <input type="radio" name="subject" id="subject-2">
-            <label for="subject-2"><img src="./img/poll/html5.png" alt="html5">HTML5</label>
-          </div>
-          <div>
-            <input type="radio" name="subject" id="subject-3">
-            <label for="subject-3"><img src="./img/poll/vuejs.png" alt="vuejs">Vue.js</label>
-          </div>
-          <div>
-            <input type="radio" name="subject" id="subject-4">
-            <label for="subject-4"><img src="./img/poll/java.png" alt="java">Java</label>
-          </div>
-          <input id="result" type="button" value="결과보기" />
-          <input id="vote" type="submit" value="투표하기" />
-        </form>
-        <div id="aside-poll-footer">
-          투표기간 : 21.03.01 ~ 21.03.31
-        </div>
-      </div>
-    </aside>
-    <main>
-      <div>[ 프로그래밍 언어 ]</div>
-      <section>
-        <img src="./img/book/p_book01.png" alt=""><img src="./img/book/p_book02.png" alt=""><img src="./img/book/p_book03.png" alt=""><img src="./img/book/p_book04.png" alt=""><img src="./img/book/p_book05.png" alt="">
-      </section>
-      <div>[ 에세이 ]</div>
-      <section>
-        <img src="./img/book/e_book01.png" alt=""><img src="./img/book/e_book02.png" alt=""><img src="./img/book/e_book03.png" alt=""><img src="./img/book/e_book04.png" alt=""><img src="./img/book/e_book05.png" alt="">
-      </section>
-      <div id="main-popular">
-        [ 인기글 ]
-        <table>
-          <thead>
-            <tr>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>조회수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>자바 공부 쉽게 하는 법</td>
-              <td>이써림</td>
-              <td>1756</td>
-            </tr>
-            <tr>
-              <td>알고리즘은 자바? 파이썬?</td>
-              <td>홍정밍</td>
-              <td>998</td>
-            </tr>
-            <tr>
-              <td>스프링 정복하기~</td>
-              <td>김나켠</td>
-              <td>856</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div id="main-latest">
-        [ 최신글 ]
-        <table>
-          <thead>
-            <tr>
-              <th>제목</th>
-              <th>작성자</th>
-              <th>조회수</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>web 관련 질문있어요.</td>
-              <td>이주넘</td>
-              <td>12</td>
-            </tr>
-            <tr>
-              <td>vuejs는 이렇게 공부해보세요.</td>
-              <td>조밍기</td>
-              <td>98</td>
-            </tr>
-            <tr>
-              <td>꽃길만 걸어요.</td>
-              <td>류해면</td>
-              <td>56</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
+    <cafe-aside></cafe-aside>
+    <cafe-main></cafe-main>
   </div>
   <footer>
     <ul>
