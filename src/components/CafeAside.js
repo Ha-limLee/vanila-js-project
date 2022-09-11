@@ -135,6 +135,40 @@ class CafeAside extends HTMLElement {
                 font-weight: bold;
                 padding: 0 12px;
             }
+
+            form img {
+                width: 50px;
+            }
+            
+            form > div {
+                margin-left: 10px;
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+                        
+            form > #vote {
+                float: right;
+                color: white;
+                background-color: purple;
+                box-shadow: 0px 0px 10px 0px rgba(100, 90, 50, 0.5);    
+                border: 0;
+            }
+            
+            form > #result {
+                margin-left: 8px;
+                float: right;
+                background-color: white;
+                box-shadow: 0px 0px 10px 0px rgba(100, 90, 50, 0.5);
+                border: 0;
+            }
+            
+            #aside-poll-footer {
+                clear: right;
+                margin-top: 40px;
+                margin-left: 10px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
         `;
         shadow.appendChild(style);
     }

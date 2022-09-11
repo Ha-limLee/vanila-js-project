@@ -8,77 +8,68 @@
   <title>SSAFY BOOK CAFE</title>
 
   <script src="./src/components/CafeHeader.js" type="module"></script>
-  <script src="./src/components/CafeAside.js" type="module"></script>
-  <script src="./src/components/CafeMain.js" type="module"></script>
+  <script src="./src/components/CafeMiddle.js" type="module"></script>
+  <script src="./src/components/CafeFooter.js" type="module"></script>
 </head>
 <body>
   <cafe-header></cafe-header>
-  <div id="middle">
-    <cafe-aside></cafe-aside>
-    <cafe-main></cafe-main>
-  </div>
-  <footer>
-    <ul>
-      <li><a href="#">카페소개</a></li>
-      <li><a href="#">개인정보처리방침</a></li>
-      <li><a href="#">이용약관</a></li>
-      <li><a href="#">오시는길</a></li>
-      <li><a href="#">© SSAFY Corp.</a></li>
-    </ul>
-  </footer>
+  <cafe-middle></cafe-middle>
+  <cafe-footer></cafe-footer>
 
   <script>
-    const $ = document.querySelector.bind(document);
+    // Todo
+    // make below functions work in each components
+    // const $ = document.querySelector.bind(document);
 
-    function collapse(element) {
-      const id = element.id;
-      const adj = document.querySelectorAll(`#${id} ~ li`);
-      adj.forEach((val, key) => {
-        if (val.style.display !== "none")
-          val.style.display = "none";
-        else {
-          val.style.display = "";
-        }
-      });
-    }
+    // function collapse(element) {
+    //   const id = element.id;
+    //   const adj = document.querySelectorAll(`#${id} ~ li`);
+    //   adj.forEach((val, key) => {
+    //     if (val.style.display !== "none")
+    //       val.style.display = "none";
+    //     else {
+    //       val.style.display = "";
+    //     }
+    //   });
+    // }
 
-    function setUserState() {
-      const user = localStorage.getItem("user");
-      const noimg = $("#noimg");
-      const profile = $("#profile");
-      const loginEl = $("#login");
-      const signinEl = $("#signin");
-      const logoutEl = $("#logout");
-      const mypageEl = $("#mypage");
-      const adminEl = $("#admin");
+    // function setUserState() {
+    //   const user = localStorage.getItem("user");
+    //   const noimg = $("#noimg");
+    //   const profile = $("#profile");
+    //   const loginEl = $("#login");
+    //   const signinEl = $("#signin");
+    //   const logoutEl = $("#logout");
+    //   const mypageEl = $("#mypage");
+    //   const adminEl = $("#admin");
 
-      if (user === null) {
-        noimg.style.display = "inherit";
-        profile.style.display = "none";
-        loginEl.style.display = "inherit";
-        signinEl.style.display = "inherit";
-        logoutEl.style.display = "none";
-        mypageEl.style.display = "none";
-        adminEl.style.display = "none";
-      } else {
-        noimg.style.display = "none";
-        profile.style.display = "inherit";
-        loginEl.style.display = "none";
-        signinEl.style.display = "none";
-        logoutEl.style.display = "inherit";
-        mypageEl.style.display = "inherit";
-        adminEl.style.display = "inherit";
-      }
-    }
+    //   if (user === null) {
+    //     noimg.style.display = "inherit";
+    //     profile.style.display = "none";
+    //     loginEl.style.display = "inherit";
+    //     signinEl.style.display = "inherit";
+    //     logoutEl.style.display = "none";
+    //     mypageEl.style.display = "none";
+    //     adminEl.style.display = "none";
+    //   } else {
+    //     noimg.style.display = "none";
+    //     profile.style.display = "inherit";
+    //     loginEl.style.display = "none";
+    //     signinEl.style.display = "none";
+    //     logoutEl.style.display = "inherit";
+    //     mypageEl.style.display = "inherit";
+    //     adminEl.style.display = "inherit";
+    //   }
+    // }
 
-    function setPollState() {
-      const pollState = localStorage.getItem("poll");
-      console.log(pollState);
-    }
+    // function setPollState() {
+    //   const pollState = localStorage.getItem("poll");
+    //   console.log(pollState);
+    // }
 
-    window.onload = function() {
-      setUserState();
-    }
+    // window.onload = function() {
+    //   setUserState();
+    // }
   </script>
 </body>
 </html>
