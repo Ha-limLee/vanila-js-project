@@ -1,3 +1,98 @@
+const style = `
+    aside {
+        margin-left: 30px;
+        width: 255px;
+        float: left;
+    }
+
+    #aside-title {
+        text-align: center;
+        height: 40px;
+        background-color: rgba(128, 128, 128, 0.403);
+        border-radius: 8px;
+    }
+
+    #aside-title-text {
+        position: relative;
+        top: 10px;
+    }
+
+    aside>ul {
+        position: relative;
+        background-color: rgba(128, 128, 128, 0.18);
+        
+        padding-top: 5px;
+        margin-top: 5px;
+        border-radius: 8px;
+    }
+
+    aside>ul div {
+        position: relative;
+        left: -25px;
+        font-weight: bold;
+    }
+
+    aside>ul li {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    aside>ul a {
+        color: black;
+        text-decoration: none;
+    }
+
+    #aside-poll {
+        margin-top: 10px;
+        border: 1px solid rgba(128, 128, 128, 0.56);
+        border-radius: 8px;
+    }
+
+    #aside-poll-header {
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    #aside-poll-header + div {
+        font-weight: bold;
+        padding: 0 12px;
+    }
+
+    form img {
+        width: 50px;
+    }
+
+    form > div {
+        margin-left: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+                
+    form > #vote {
+        float: right;
+        color: white;
+        background-color: purple;
+        box-shadow: 0px 0px 10px 0px rgba(100, 90, 50, 0.5);    
+        border: 0;
+    }
+
+    form > #result {
+        margin-left: 8px;
+        float: right;
+        background-color: white;
+        box-shadow: 0px 0px 10px 0px rgba(100, 90, 50, 0.5);
+        border: 0;
+    }
+
+    #aside-poll-footer {
+        clear: right;
+        margin-top: 40px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+`;
+
 class CafeAside extends HTMLElement {
     constructor() {
         super();
@@ -6,6 +101,9 @@ class CafeAside extends HTMLElement {
     connectedCallback() {
         const shadow = this.shadowRoot;
         shadow.innerHTML = `
+            <style>
+                ${style}
+            </style>
             <aside>
                 <img id="noimg" src="./img/noimg.png">
                 <img id="profile" src="./img/profile.png" style="display: none">
@@ -75,102 +173,6 @@ class CafeAside extends HTMLElement {
                 </div>
             </aside>
         `;
-        const style = document.createElement("style");
-        style.innerHTML = `
-            aside {
-                margin-left: 30px;
-                width: 255px;
-                float: left;
-            }
-
-            #aside-title {
-                text-align: center;
-                height: 40px;
-                background-color: rgba(128, 128, 128, 0.403);
-                border-radius: 8px;
-            }
-
-            #aside-title-text {
-                position: relative;
-                top: 10px;
-            }
-
-            aside>ul {
-                position: relative;
-                background-color: rgba(128, 128, 128, 0.18);
-                
-                padding-top: 5px;
-                margin-top: 5px;
-                border-radius: 8px;
-            }
-
-            aside>ul div {
-                position: relative;
-                left: -25px;
-                font-weight: bold;
-            }
-
-            aside>ul li {
-                padding-top: 5px;
-                padding-bottom: 5px;
-            }
-
-            aside>ul a {
-                color: black;
-                text-decoration: none;
-            }
-
-            #aside-poll {
-                margin-top: 10px;
-                border: 1px solid rgba(128, 128, 128, 0.56);
-                border-radius: 8px;
-            }
-
-            #aside-poll-header {
-                text-align: center;
-                margin: 5px 0;
-            }
-
-            #aside-poll-header + div {
-                font-weight: bold;
-                padding: 0 12px;
-            }
-
-            form img {
-                width: 50px;
-            }
-            
-            form > div {
-                margin-left: 10px;
-                margin-top: 5px;
-                margin-bottom: 10px;
-            }
-                        
-            form > #vote {
-                float: right;
-                color: white;
-                background-color: purple;
-                box-shadow: 0px 0px 10px 0px rgba(100, 90, 50, 0.5);    
-                border: 0;
-            }
-            
-            form > #result {
-                margin-left: 8px;
-                float: right;
-                background-color: white;
-                box-shadow: 0px 0px 10px 0px rgba(100, 90, 50, 0.5);
-                border: 0;
-            }
-            
-            #aside-poll-footer {
-                clear: right;
-                margin-top: 40px;
-                margin-left: 10px;
-                margin-bottom: 10px;
-                font-weight: bold;
-            }
-        `;
-        shadow.appendChild(style);
     }
 }
 

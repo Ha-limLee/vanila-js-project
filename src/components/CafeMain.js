@@ -1,3 +1,47 @@
+const style = `
+    main {
+        float: left;
+        margin-left: 20px;
+    }
+
+    main>div {
+        font-weight: bold;
+    }
+
+    main>section>img {
+        width: 118px;
+        margin: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(100, 90, 50, 0.5);
+    }
+
+    #main-popular {
+        float: left;
+        margin-right: 20px;
+    }
+
+    tr:nth-child(odd) {
+        background-color: rgba(128, 128, 128, 0.068);
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    th {
+        padding: 5px;
+        background-color: white;
+    }
+
+    td {
+        padding: 5px;
+        font-weight: normal;
+    }
+
+    #main-latest {
+        margin: auto;
+    }
+`;
+
 class CafeMain extends HTMLElement {
     constructor() {
         super();
@@ -7,6 +51,9 @@ class CafeMain extends HTMLElement {
     connectedCallback() {
         const shadow = this.shadowRoot;
         shadow.innerHTML = `
+            <style>
+                ${style}
+            </style>
             <main>
                 <div>[ 프로그래밍 언어 ]</div>
                     <section>
@@ -76,51 +123,6 @@ class CafeMain extends HTMLElement {
                     </div>
             </main>
         `;
-        const style = document.createElement("style");
-        style.innerHTML = `
-            main {
-                float: left;
-                margin-left: 20px;
-            }
-            
-            main>div {
-                font-weight: bold;
-            }
-            
-            main>section>img {
-                width: 118px;
-                margin: 10px;
-                box-shadow: 0px 0px 10px 0px rgba(100, 90, 50, 0.5);
-            }
-            
-            #main-popular {
-                float: left;
-                margin-right: 20px;
-            }
-
-            tr:nth-child(odd) {
-                background-color: rgba(128, 128, 128, 0.068);
-            }
-            
-            table {
-                border-collapse: collapse;
-            }
-            
-            th {
-                padding: 5px;
-                background-color: white;
-            }
-            
-            td {
-                padding: 5px;
-                font-weight: normal;
-            }
-            
-            #main-latest {
-                margin: auto;
-            }
-        `;
-        shadow.appendChild(style);
     }
 }
 

@@ -1,6 +1,14 @@
 import "./CafeAside.js";
 import "./CafeMain.js";
 
+const style = `
+    #middle {
+        margin: auto;
+        height: 1450px;
+        max-width: 1000px;
+    }
+`;
+
 class CafeMiddle extends HTMLElement {
     constructor() {
         super();
@@ -9,20 +17,14 @@ class CafeMiddle extends HTMLElement {
     connectedCallback() {
         const shadow = this.shadowRoot;
         shadow.innerHTML = `
+            <style>
+                ${style}
+            </style>
             <div id="middle">
                 <cafe-aside></cafe-aside>
                 <cafe-main></cafe-main>
             </div>
         `;
-        const style = document.createElement("style");
-        style.innerHTML = `
-            #middle {
-                margin: auto;
-                height: 1450px;
-                max-width: 1000px;
-            }
-        `;
-        shadow.appendChild(style);
     }
 }
 

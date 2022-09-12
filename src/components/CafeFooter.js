@@ -1,3 +1,28 @@
+const style = `
+    footer {
+        clear: left;
+        margin-left: 220px;
+        height: 40px;
+        max-width: 1000px;
+        padding: 0;
+        
+    }
+
+    footer>ul {
+        list-style: none;
+    }
+
+    footer li {
+        margin-right: 10px;
+        float: left;
+    }
+
+    footer li a {
+        text-decoration: none;
+        color: rgba(128, 128, 128, 0.6);
+    }
+`;
+
 class CafeFooter extends HTMLElement {
     constructor() {
         super();
@@ -7,6 +32,9 @@ class CafeFooter extends HTMLElement {
     connectedCallback() {
         const shaodw = this.shadowRoot;
         shaodw.innerHTML = `
+            <style>
+                ${style}
+            </style>
             <footer>
                 <ul>
                 <li><a href="#">카페소개</a></li>
@@ -17,33 +45,6 @@ class CafeFooter extends HTMLElement {
                 </ul>
             </footer>
         `;
-
-        const style = document.createElement("style");
-        style.innerHTML = `
-            footer {
-                clear: left;
-                margin-left: 220px;
-                height: 40px;
-                max-width: 1000px;
-                padding: 0;
-                
-            }
-
-            footer>ul {
-                list-style: none;
-            }
-
-            footer li {
-                margin-right: 10px;
-                float: left;
-            }
-            
-            footer li a {
-                text-decoration: none;
-                color: rgba(128, 128, 128, 0.6);
-            }
-        `;
-        shaodw.appendChild(style);
     }
 }
 
