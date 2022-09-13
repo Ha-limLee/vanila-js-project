@@ -11,13 +11,38 @@ class ShopList extends HTMLElement {
         return ["display"];
     }
 
+    attributeChangedCallback(name, oldValue, newValue) {
+        this[name] = newValue;
+        this.render();
+    }
+
     connectedCallback() {
+        this.render();
+    }
+
+    toggle = () => {
+        if (this.display) {
+            this.setAttribute("display", "");
+        } else {
+            this.setAttribute("display", "none");
+        }
+    }
+
+    render() {
         /** @type{[]} */
         const regions = JSON.parse(this.getAttribute("regions") || "[]");
-        console.log(regions);
         const shadow = this.shadowRoot;
-        if (shadow)
+        if (shadow) {
             shadow.innerHTML = `
+                <style>
+                    ul {
+                        list-style: none;
+                    }
+                    a {
+                        text-decoration: none;
+                        color: black;
+                    }
+                </style>
                 <ul>
                     <div id="city">
                         ${this.getAttribute("city")}
@@ -25,16 +50,8 @@ class ShopList extends HTMLElement {
                     ${regions.map(x => `<li style="display: ${this.display}"><a href="#">${x}</a></li>`).join("")}
                 </ul>
             `;
-        shadow?.querySelector("#city")?.addEventListener("click", this.toggle);
-        console.log(shadow);
-    }
-    toggle = () => {
-        if (this.display) {
-            this.display = "";
-        } else {
-            this.display = "none";
+            shadow.querySelector("#city")?.addEventListener("click", this.toggle);
         }
-        console.log(this.display);
     }
 }
 
