@@ -1,3 +1,5 @@
+import "./ShopList.js";
+
 const style = `
     aside {
         margin-left: 30px;
@@ -112,34 +114,10 @@ class CafeAside extends HTMLElement {
                         전국매장펼치기
                     </div>
                 </div>
-                <ul>
-                    <div id="collapse-seoul" onclick="collapse(this)">
-                        서울
-                    </div>
-                    <li style="display:none"><a href="#">역삼점</a></li>
-                    <li style="display:none"><a href="#">선릉점</a></li>
-                </ul>
-                <ul>
-                    <div id="collapse-daejeon" onclick="collapse(this)">
-                        대전
-                    </div>
-                    <li style="display:none"><a href="#">학하점</a></li>
-                    <li style="display:none"><a href="#">봉명점</a></li>
-                </ul>
-                <ul>
-                    <div id="collapse-gumi" onclick="collapse(this)">
-                        구미
-                    </div>
-                    <li style="display:none"><a href="#">인동점</a></li>
-                    <li style="display:none"><a href="#">공단점</a></li>
-                </ul>
-                <ul>
-                    <div id="collapse-gwangju" onclick="collapse(this)">
-                        광주
-                    </div>
-                    <li style="display:none"><a href="#">하남산단점</a></li>
-                    <li style="display:none"><a href="#">광주역점</a></li>
-                </ul>
+                <shop-list city="서울" regions="[&quot;선릉점&quot;, &quot;역삼점&quot;]"></shop-list>
+                <shop-list city="대전" regions="[&quot;학하점&quot;, &quot;봉명점&quot;]"></shop-list>
+                <shop-list city="구미" regions="[&quot;인동점&quot;, &quot;공단점&quot;]"></shop-list>
+                <shop-list city="광주" regions="[&quot;하남산단점&quot;, &quot;광주역점&quot;]"></shop-list>
                 <div id="aside-poll">
                     <div id="aside-poll-header">
                         [ 당신의 선택 ]
