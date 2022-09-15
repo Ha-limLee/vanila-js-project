@@ -3,8 +3,10 @@
 class ShopList extends HTMLElement {
     constructor() {
         super();
-        this.display = "none";
         this.attachShadow({ mode: "open" });
+        this.state = {
+            display: "none"
+        };
     }
 
     static get observedAttributes() {
@@ -12,8 +14,10 @@ class ShopList extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        this[name] = newValue;
-        this.render();
+        if (this.state.hasOwnProperty(name) && oldValue !== newValue) {
+            this.state[name] = newValue;
+            this.render();
+        }
     }
 
     connectedCallback() {
@@ -21,7 +25,7 @@ class ShopList extends HTMLElement {
     }
 
     toggle = () => {
-        if (this.display) {
+        if (this.state.display) {
             this.setAttribute("display", "");
         } else {
             this.setAttribute("display", "none");
@@ -47,7 +51,7 @@ class ShopList extends HTMLElement {
                     <div id="city">
                         ${this.getAttribute("city")}
                     </div>
-                    ${regions.map(x => `<li style="display: ${this.display}"><a href="#">${x}</a></li>`).join("")}
+                    ${regions.map(x => `<li style="display: ${this.state.display}"><a href="#">${x}</a></li>`).join("")}
                 </ul>
             `;
             shadow.querySelector("#city")?.addEventListener("click", this.toggle);
