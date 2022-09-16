@@ -1,19 +1,13 @@
-// @ts-check
+import { Component } from "../util/Component.js";
 
-class ShopList extends HTMLElement {
+// @ts-check
+class ShopList extends Component {
     constructor() {
         super();
-        this.display = "none";
+        this.state = {
+            display: "none"
+        }
         this.attachShadow({ mode: "open" });
-    }
-
-    static get observedAttributes() {
-        return ["display"];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        this[name] = newValue;
-        this.render();
     }
 
     connectedCallback() {
@@ -21,14 +15,14 @@ class ShopList extends HTMLElement {
     }
 
     toggle = () => {
-        if (this.display) {
-            this.setAttribute("display", "");
+        if (this.state.display) {
+            this.setState({ ...this.state, display: "" });
         } else {
-            this.setAttribute("display", "none");
+            this.setState({ ...this.state, display: "none" });
         }
     }
 
-    render() {
+    render = () => {
         /** @type{[]} */
         const regions = JSON.parse(this.getAttribute("regions") || "[]");
         const shadow = this.shadowRoot;
@@ -47,7 +41,7 @@ class ShopList extends HTMLElement {
                     <div id="city">
                         ${this.getAttribute("city")}
                     </div>
-                    ${regions.map(x => `<li style="display: ${this.display}"><a href="#">${x}</a></li>`).join("")}
+                    ${regions.map(x => `<li style="display: ${this.state.display}"><a href="#">${x}</a></li>`).join("")}
                 </ul>
             `;
             shadow.querySelector("#city")?.addEventListener("click", this.toggle);
