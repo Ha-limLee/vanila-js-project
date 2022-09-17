@@ -2,6 +2,18 @@ export class Component extends HTMLElement {
     constructor() {
         super();
     }
+    
+    init(child) {
+        child.attachShadow({ mode: "open" });
+        this.connectedCallback.bind(child);
+    }
+
+    connectedCallback() {
+        const { html, events } = this.render();
+        
+        this.shadowRoot.innerHTML = html;
+        events?.forEach(fn => fn(this.shadowRoot));
+    }
 
     setState = (newState) => {
         if (!Component.isSame(this.state, newState)) {
@@ -23,5 +35,9 @@ export class Component extends HTMLElement {
                 return false;
         }
         return true;
+    }
+
+    render = () => {
+        throw new Error("You have to implement the method render()");
     }
 }

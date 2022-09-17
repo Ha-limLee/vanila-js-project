@@ -1,5 +1,6 @@
 import "./CafeAside.js";
 import "./CafeMain.js";
+import { Component } from "../util/Component.js";
 
 const style = `
     #middle {

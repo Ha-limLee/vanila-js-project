@@ -4,14 +4,10 @@ import { Component } from "../util/Component.js";
 class ShopList extends Component {
     constructor() {
         super();
+        this.init(this);
         this.state = {
             display: "none"
         }
-        this.attachShadow({ mode: "open" });
-    }
-
-    connectedCallback() {
-        this.render();
     }
 
     toggle = () => {
@@ -25,27 +21,48 @@ class ShopList extends Component {
     render = () => {
         /** @type{[]} */
         const regions = JSON.parse(this.getAttribute("regions") || "[]");
-        const shadow = this.shadowRoot;
-        if (shadow) {
-            shadow.innerHTML = `
-                <style>
-                    ul {
-                        list-style: none;
-                    }
-                    a {
-                        text-decoration: none;
-                        color: black;
-                    }
-                </style>
-                <ul>
-                    <div id="city">
-                        ${this.getAttribute("city")}
-                    </div>
-                    ${regions.map(x => `<li style="display: ${this.state.display}"><a href="#">${x}</a></li>`).join("")}
-                </ul>
-            `;
-            shadow.querySelector("#city")?.addEventListener("click", this.toggle);
-        }
+        const html = `
+            <style>
+                ul {
+                    list-style: none;
+                }
+                a {
+                    text-decoration: none;
+                    color: black;
+                }
+            </style>
+            <ul>
+                <div id="city">
+                    ${this.getAttribute("city")}
+                </div>
+                ${regions.map(x => `<li style="display: ${this.state.display}"><a href="#">${x}</a></li>`).join("")}
+            </ul>
+        `;
+        // if (shadow) {
+        //     shadow.innerHTML = `
+        //         <style>
+        //             ul {
+        //                 list-style: none;
+        //             }
+        //             a {
+        //                 text-decoration: none;
+        //                 color: black;
+        //             }
+        //         </style>
+        //         <ul>
+        //             <div id="city">
+        //                 ${this.getAttribute("city")}
+        //             </div>
+        //             ${regions.map(x => `<li style="display: ${this.state.display}"><a href="#">${x}</a></li>`).join("")}
+        //         </ul>
+        //     `;
+        //     shadow.querySelector("#city")?.addEventListener("click", this.toggle);
+        // }
+
+        return {
+            html: html,
+            events: [(root) => { console.log(root.querySelector("#city")); root.querySelector("#city").addEventListener("click", this.toggle) }]
+        };
     }
 }
 
