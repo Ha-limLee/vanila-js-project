@@ -1,21 +1,23 @@
 export class Component extends HTMLElement {
     constructor() {
         super();
-    }
-    
-    init(child) {
-        child.attachShadow({ mode: "open" });
-        this.connectedCallback.bind(child);
+        this.attachShadow({ mode: "open" });
     }
 
     connectedCallback() {
-        const { html, events } = this.render();
-        
-        this.shadowRoot.innerHTML = html;
-        events?.forEach(fn => fn(this.shadowRoot));
+        this.render();
     }
 
-    setState = (newState) => {
+    get template() {
+        throw new Error("You have to implement the template getter.");
+    }
+
+    initEvents() {
+        const es = this.events;
+        es.forEach(e => e(this.shadowRoot));
+    }
+
+    setState(newState) {
         if (!Component.isSame(this.state, newState)) {
             this.state = newState;
             this.render();
@@ -37,7 +39,8 @@ export class Component extends HTMLElement {
         return true;
     }
 
-    render = () => {
-        throw new Error("You have to implement the method render()");
+    render () {
+        this.shadowRoot.innerHTML = this.template;
+        this.initEvents();
     }
 }

@@ -4,7 +4,6 @@ import { Component } from "../util/Component.js";
 class ShopList extends Component {
     constructor() {
         super();
-        this.init(this);
         this.state = {
             display: "none"
         }
@@ -18,10 +17,15 @@ class ShopList extends Component {
         }
     }
 
-    render = () => {
+    get events() {
+        return [__ => __.querySelector("#city").addEventListener("click", this.toggle)];
+    }
+
+    get template() {
         /** @type{[]} */
         const regions = JSON.parse(this.getAttribute("regions") || "[]");
-        const html = `
+        
+        return `
             <style>
                 ul {
                     list-style: none;
@@ -38,31 +42,6 @@ class ShopList extends Component {
                 ${regions.map(x => `<li style="display: ${this.state.display}"><a href="#">${x}</a></li>`).join("")}
             </ul>
         `;
-        // if (shadow) {
-        //     shadow.innerHTML = `
-        //         <style>
-        //             ul {
-        //                 list-style: none;
-        //             }
-        //             a {
-        //                 text-decoration: none;
-        //                 color: black;
-        //             }
-        //         </style>
-        //         <ul>
-        //             <div id="city">
-        //                 ${this.getAttribute("city")}
-        //             </div>
-        //             ${regions.map(x => `<li style="display: ${this.state.display}"><a href="#">${x}</a></li>`).join("")}
-        //         </ul>
-        //     `;
-        //     shadow.querySelector("#city")?.addEventListener("click", this.toggle);
-        // }
-
-        return {
-            html: html,
-            events: [(root) => { console.log(root.querySelector("#city")); root.querySelector("#city").addEventListener("click", this.toggle) }]
-        };
     }
 }
 
