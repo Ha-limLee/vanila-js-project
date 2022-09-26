@@ -1,5 +1,4 @@
 import "./CafeAside.js";
-import "./CafeMain.js";
 import { Component } from "../util/Component.js";
 
 const style = `
@@ -13,9 +12,7 @@ const style = `
 class CafeMiddle extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({mode: "open"});
-    }
-    connectedCallback() {
+        this.attachShadow({ mode: "open" });
         const shadow = this.shadowRoot;
         shadow.innerHTML = `
             <style>
@@ -26,6 +23,11 @@ class CafeMiddle extends HTMLElement {
                 <cafe-main></cafe-main>
             </div>
         `;
+        const src = document.createElement("script");
+        src.src = "src/components/CafeMain.js";
+        shadow.appendChild(src);
+    }
+    connectedCallback() {
     }
 }
 
